@@ -13,24 +13,35 @@ func _input(event):
 
 func processMouseInputEvent(event):
 	var cutesyPos = self._cutesy.get_translation()
-	var currentPos = self.get_translation()
+	var currentPos = cutesyPos + self.get_translation()
+	
+#	print("cutesy at:")
+#	print(cutesyPos)
+#	print("camera at:")
+#	print(currentPos)
 
 	var xAngle = event.relative.x
+#	print("rotating by:")
+#	print(xAngle)
 	var horizontalCenter = Vector2(cutesyPos.x, cutesyPos.z)
 	var horizontalPoint = Vector2(currentPos.x, currentPos.z)
 	var rotatedHorizontal = rotateAroundCenter(horizontalPoint, horizontalCenter, xAngle)
 	var horizontalCoordinate = Vector3(rotatedHorizontal.x, currentPos.y, rotatedHorizontal.y)
+#	print("camera getting translated to:")
+#	print(horizontalCoordinate)
+	
+	self.set_translation(horizontalCoordinate - cutesyPos)
+	
+#	print("\n")
 
-	self.set_translation(horizontalCoordinate)
-
-	currentPos = self.get_translation()
+	currentPos = cutesyPos + self.get_translation()
 	var yAngle = event.relative.y
 	var verticalCenter = Vector2(cutesyPos.y, cutesyPos.z)
 	var verticalPoint = Vector2(currentPos.y, currentPos.z)
 	var rotatedVertical = rotateAroundCenter(verticalPoint, verticalCenter, yAngle)
 	var verticalCoordinate = Vector3(currentPos.x, rotatedVertical.x, rotatedVertical.y)
 
-	self.set_translation(verticalCoordinate)
+	self.set_translation(verticalCoordinate - cutesyPos)
 	self.look_at(cutesyPos, Vector3(0, 1, 0))
 
 func rotateAroundCenter(point, center, degrees):

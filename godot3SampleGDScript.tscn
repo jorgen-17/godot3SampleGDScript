@@ -9,10 +9,11 @@
 [node name="cutesy" parent="." index="0" instance=ExtResource( 1 )]
 
 script = ExtResource( 2 )
+_sections_unfolded = [ "Pause", "Transform" ]
 
 [node name="Camera" type="Camera" parent="cutesy" index="2"]
 
-transform = Transform( -0.6382, 0.413388, -0.649469, 0, 0.843609, 0.536959, 0.76987, 0.342687, -0.538391, -49.8539, 42.6069, -49.7317 )
+transform = Transform( -0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, 0.5, -0.5, -50, 50, -50 )
 keep_aspect = 1
 cull_mask = 1048575
 environment = null
@@ -26,5 +27,6 @@ size = 1.0
 near = 0.05
 far = 100.0
 script = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
 
 
